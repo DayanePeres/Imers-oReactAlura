@@ -19,5 +19,5 @@ const Button = styled.button`
     &:focus {
       opacity: .5;
     }
-`;  // `` = tag de template string 
+`;   
 export default Button;
