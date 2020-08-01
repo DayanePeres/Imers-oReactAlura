@@ -4,8 +4,13 @@ import styled, { css } from 'styled-components';
 
 const FormFieldWrapper = styled.div`
   position: relative;
-  textarea{
-    min-height: 150%;
+
+  textarea {
+    min-height: 150px;
+  }
+
+  input[type="color"] {
+    padding-left: 56px;
   }
 `;
 
@@ -71,23 +76,17 @@ const Input = styled.input`
 function FormField({
   label, type, name, value, onChange,
 }) {
-  const fieldId = `id_${name}`;
-  const isTextarea = type === 'texarea';
-  const tag = isTextarea ? 'textarea' : 'input';
+  const isTypeTextArea = type === 'textarea';
+  const tag = isTypeTextArea ? 'textarea' : 'input';
 
-  const hasValue = Boolean(value.length);
   return (
     <FormFieldWrapper>
-      <Label
-        htmlFor={fieldId}
-      >
+      <Label>
         <Input
           as={tag}
-          id={fieldId}
           type={type}
           value={value}
           name={name}
-          hasValue={hasValue}
           onChange={onChange}
         />
         <Label.Text>
@@ -100,17 +99,16 @@ function FormField({
 }
 
 FormField.defaultProps = {
-  type: 'texto',
-  value: '',
-  onChange: () => {},
+  type: 'text',
+  value: '',
 };
 
 FormField.propTypes = {
   label: PropTypes.string.isRequired,
-  type: PropTypes.string,
   name: PropTypes.string.isRequired,
+  type: PropTypes.string,
   value: PropTypes.string,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default FormField;
